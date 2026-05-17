@@ -165,7 +165,7 @@ function HeroSection() {
         </FadeIn>
       </div>
 
-      <Magnet margin={600} strength={4} centerY={false} className="absolute left-1/2 top-[55%] z-10 w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] md:top-[58%]">
+      <Magnet margin={600} strength={4} centerY={false} className="absolute left-1/2 top-[58%] sm:top-[55%] z-10 w-[140px] sm:w-[220px] md:w-[260px] lg:w-[300px] md:top-[58%]">
         <FadeIn delay={0.6} y={30}>
           <img
             src={getPortrait()}
@@ -354,8 +354,8 @@ function FeaturedProjectCard({
     <motion.div
       className="sticky rounded-[40px] sm:rounded-[50px] md:rounded-[60px] border-2 border-[#D7E2EA] bg-[#0C0C0C] p-4 sm:p-6 md:p-8 overflow-hidden"
       style={{
-        top: `${24 + index * 28}px`,
-        height: '85vh',
+        top: `${20 + index * 24}px`,
+        height: typeof window !== 'undefined' && window.innerWidth < 640 ? 'min(75vh, 520px)' : '85vh',
         scale,
         zIndex: 10 + index,
       }}
@@ -377,7 +377,7 @@ function FeaturedProjectCard({
         <ViewAllButton to={project.video_url || project.video_file ? '/works/videos' : '/works/images'} />
       </div>
 
-      <div className="flex gap-3 h-[calc(85vh-180px)]">
+      <div className="flex gap-3 h-[calc(85vh-180px)] sm:h-[calc(85vh-200px)] min-h-[200px]">
         {project.video_file ? (
           <div className={`w-full ${project.video_ratio === '9:16' ? 'aspect-[4/3]' : 'aspect-video'} max-h-full rounded-3xl overflow-hidden relative bg-black`}>
             <video src={project.video_file} className="w-full h-full object-contain" controls playsInline preload="metadata" controlsList="nodownload" disablePictureInPicture onContextMenu={e => e.preventDefault()} poster={project.cover_image || project.images[0] || ''} />
