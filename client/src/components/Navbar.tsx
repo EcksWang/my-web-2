@@ -34,7 +34,6 @@ export default function Navbar() {
   const worksLinks = [
     { path: '/works/images', labelZh: '图片作品', labelEn: 'Image Works' },
     { path: '/works/videos', labelZh: '视频作品', labelEn: 'Video Works' },
-    { path: '/works/cases', labelZh: '商业案例', labelEn: 'Case Studies' },
   ]
 
   return (
@@ -61,7 +60,7 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <a href="/#/services" className={linkClass}>{isZh ? '项目经历' : 'Experience'}</a>
+          <button onClick={() => navigate('/works/cases')} className={linkClass}>{isZh ? '商业案例' : 'Case Studies'}</button>
           <div className="relative">
             <button onClick={() => setOpenDropdown(openDropdown === 'works' ? null : 'works')} className={linkClass}>
               {t('nav.works')}
@@ -106,7 +105,7 @@ export default function Navbar() {
             </button>
           ))}
 
-          <a href="/#/services" onClick={() => setMobileOpen(false)} className={`block ${mobileLinkClass}`}>{isZh ? '项目经历' : 'Experience'}</a>
+          <button onClick={() => { navigate('/works/cases'); setMobileOpen(false) }} className={`block w-full text-left ${mobileLinkClass}`}>{isZh ? '商业案例' : 'Case Studies'}</button>
 
           <p className="text-[#D7E2EA]/30 text-xs uppercase tracking-widest px-4 pt-2 pb-1">{t('nav.works')}</p>
           {worksLinks.map(l => (
