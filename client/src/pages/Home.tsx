@@ -49,6 +49,7 @@ interface ProjectData {
   sort_order: number
   video_url?: string
   video_ratio?: string
+  video_file?: string
 }
 
 interface DisplayProject {

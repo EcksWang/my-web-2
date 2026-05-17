@@ -53,6 +53,7 @@ interface ProjectItem {
   is_featured: number | boolean
   video_url?: string
   video_ratio?: string
+  video_file?: string
 }
 
 interface ServiceRecord {

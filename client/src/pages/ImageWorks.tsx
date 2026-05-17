@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { WheelEvent } from 'react'
 import { useTranslation } from 'react-i18next'
-import { motion } from 'framer-motion'
+
 import { useNavigate } from 'react-router-dom'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import axios from 'axios'
