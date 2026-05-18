@@ -222,7 +222,7 @@ function MarqueeSection() {
             src={img.url}
             alt=""
             loading="lazy"
-            className="w-[420px] h-[270px] object-cover rounded-3xl shrink-0"
+            className="w-[200px] h-[130px] sm:w-[300px] sm:h-[190px] md:w-[420px] md:h-[270px] object-cover rounded-3xl shrink-0"
           />
         ))}
       </div>
@@ -236,7 +236,7 @@ function MarqueeSection() {
             src={img.url}
             alt=""
             loading="lazy"
-            className="w-[420px] h-[270px] object-cover rounded-3xl shrink-0"
+            className="w-[200px] h-[130px] sm:w-[300px] sm:h-[190px] md:w-[420px] md:h-[270px] object-cover rounded-3xl shrink-0"
           />
         ))}
       </div>

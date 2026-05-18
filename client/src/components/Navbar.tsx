@@ -95,7 +95,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="md:hidden px-6 pb-4 space-y-1 bg-[#0C0C0C]">
+        <div className="md:hidden px-6 pb-4 space-y-1 bg-[#0C0C0C] relative z-50">
           <a href="/#/" onClick={() => setMobileOpen(false)} className={`block ${mobileLinkClass}`}>{t('nav.home')}</a>
 
           <p className="text-[#D7E2EA]/30 text-xs uppercase tracking-widest px-4 pt-2 pb-1">{t('nav.about')}</p>
