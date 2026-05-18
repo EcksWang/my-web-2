@@ -170,7 +170,7 @@ function HeroSection() {
           <img
             src={getPortrait()}
             alt="Wang Hang"
-            fetchpriority="high"
+            fetchPriority="high"
             loading="eager"
             className="w-full h-auto rounded-3xl"
           />
