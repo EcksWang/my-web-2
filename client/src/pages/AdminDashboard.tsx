@@ -67,7 +67,7 @@ interface ServiceRecord {
 }
 
 function parseStringArray(value: unknown): string[] {
-  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === 'string' && item.length > 0)
+  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === 'string')
   if (typeof value !== 'string') return []
   try {
     const parsed = JSON.parse(value)
