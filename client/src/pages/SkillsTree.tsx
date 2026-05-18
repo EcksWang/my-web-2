@@ -19,12 +19,25 @@ interface Skill {
 }
 
 const categoryColors: Record<string, string> = {
+  'AI Content Creation Tools': '#A855F7',
+  'Operations & Marketing': '#F59E0B',
+  'Design & Video Production': '#3B82F6',
+  'Office & General Skills': '#10B981',
   '设计技能': '#8B5CF6',
-  'Design': '#8B5CF6',
   '软件技能': '#3B82F6',
-  'Software': '#3B82F6',
   '开发技能': '#10B981',
+  'Design': '#8B5CF6',
+  'Software': '#3B82F6',
   'Development': '#10B981',
+}
+
+const colorGradients: Record<string, [string, string]> = {
+  '#A855F7': ['#A855F7', '#7C3AED'],
+  '#F59E0B': ['#F59E0B', '#D97706'],
+  '#3B82F6': ['#2563EB', '#3B82F6'],
+  '#10B981': ['#059669', '#10B981'],
+  '#8B5CF6': ['#7C3AED', '#8B5CF6'],
+  '#D7E2EA': ['#D7E2EA', '#9CA3AF'],
 }
 
 export default function SkillsTree() {
@@ -72,10 +85,11 @@ export default function SkillsTree() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: ci * 0.15 }}
-                className="bg-[#111] border border-[#D7E2EA]/5 rounded-2xl p-5"
+                className="bg-[#111] border border-[#D7E2EA]/5 rounded-2xl p-5 overflow-hidden"
               >
+                <div className="h-0.5 -mx-5 -mt-5 mb-4" style={{ backgroundColor: color }} />
                 <h3 className="text-sm font-semibold uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: color }} />
+                  <span className="w-3 h-3 rounded-full shadow-lg" style={{ backgroundColor: color, boxShadow: `0 0 8px ${color}60` }} />
                   <span className="text-[#D7E2EA]">{cat}</span>
                 </h3>
 
@@ -97,7 +111,9 @@ export default function SkillsTree() {
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: 0.2 }}
                                 className="h-full rounded-full"
-                                style={{ backgroundColor: color }}
+                                style={{
+                                  background: `linear-gradient(90deg, ${(colorGradients[color] || colorGradients['#D7E2EA'])[0]}, ${(colorGradients[color] || colorGradients['#D7E2EA'])[1]})`,
+                                }}
                               />
                             </div>
                             <ChevronRight size={14} className="text-[#D7E2EA]/20 group-hover:text-[#D7E2EA]/60 transition-colors" />
@@ -119,7 +135,9 @@ export default function SkillsTree() {
                                   viewport={{ once: true }}
                                   transition={{ duration: 0.6, delay: 0.3 }}
                                   className="h-full rounded-full"
-                                  style={{ backgroundColor: color, opacity: 0.6 }}
+                                  style={{
+                                    background: `linear-gradient(90deg, ${(colorGradients[color] || colorGradients['#D7E2EA'])[0]}80, ${(colorGradients[color] || colorGradients['#D7E2EA'])[1]}80)`,
+                                  }}
                                 />
                               </div>
                             </div>
@@ -144,15 +162,21 @@ export default function SkillsTree() {
                 <h3 className="text-[#D7E2EA] text-lg font-semibold">{lang === 'zh' ? selected.name_zh : selected.name_en}</h3>
                 <button onClick={() => setSelected(null)} className="text-[#D7E2EA]/40 hover:text-[#D7E2EA]"><X size={18} /></button>
               </div>
+              {(() => {
+                const catColor = categoryColors[selected.category] || '#D7E2EA'
+                const [c1, c2] = colorGradients[catColor] || colorGradients['#D7E2EA']
+                return (
               <div className="mb-4">
                 <p className="text-[#D7E2EA]/40 text-xs uppercase tracking-wider mb-1">{isZh ? '熟练度' : 'Proficiency'}</p>
                 <div className="flex items-center gap-2">
-                  <div className="flex-1 h-2 bg-[#D7E2EA]/10 rounded-full overflow-hidden">
-                    <div className="h-full rounded-full bg-[#D7E2EA]" style={{ width: `${selected.proficiency}%` }} />
+                  <div className="flex-1 h-2.5 bg-[#D7E2EA]/10 rounded-full overflow-hidden">
+                    <div className="h-full rounded-full" style={{ width: `${selected.proficiency}%`, background: `linear-gradient(90deg, ${c1}, ${c2})` }} />
                   </div>
                   <span className="text-[#D7E2EA] text-sm font-medium">{selected.proficiency}%</span>
                 </div>
               </div>
+                )
+              })()}
               <div>
                 <p className="text-[#D7E2EA]/40 text-xs uppercase tracking-wider mb-1">{isZh ? '说明' : 'Description'}</p>
                 <p className="text-[#D7E2EA]/70 text-sm leading-relaxed">
