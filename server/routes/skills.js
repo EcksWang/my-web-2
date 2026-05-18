@@ -21,6 +21,19 @@ router.put('/:id', auth, (req, res) => {
   res.json({ success: true })
 })
 
+router.post('/batch', auth, (req, res) => {
+  const skills = req.body
+  if (!Array.isArray(skills)) return res.status(400).json({ error: 'Expected an array' })
+  const stmt = db.prepare('INSERT INTO skills (name_zh,name_en,category,proficiency,description_zh,description_en,parent_id,sort_order) VALUES (?,?,?,?,?,?,?,?)')
+  const insertMany = db.transaction((items) => {
+    for (const s of items) {
+      stmt.run(s.name_zh || '', s.name_en || '', s.category || '', s.proficiency ?? 80, s.description_zh || '', s.description_en || '', s.parent_id ?? null, s.sort_order || 0)
+    }
+  })
+  insertMany(skills)
+  res.json({ imported: skills.length })
+})
+
 router.delete('/:id', auth, (req, res) => {
   db.prepare('DELETE FROM skills WHERE id = ?').run(req.params.id)
   res.json({ success: true })
