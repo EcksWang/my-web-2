@@ -506,7 +506,7 @@ export default function Home() {
       <ServicesSection />
       <FeaturedProjectsSection />
       <a
-        href="/admin"
+        href="#/admin"
         className="fixed bottom-4 right-4 w-8 h-8 rounded-full bg-[#D7E2EA]/5 hover:bg-[#D7E2EA]/15 transition-colors z-50 flex items-center justify-center opacity-30 hover:opacity-70"
         title="Admin"
       >
